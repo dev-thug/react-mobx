@@ -1,5 +1,8 @@
 import {action, makeObservable, observable} from "mobx";
 
+// action = 함수, 함수 안에서 observable을 바꿀때 action을 사용
+// observable = 계속 옵저버 하고있음 , observable이 변경이 되면 이것에 따라 refresh
+
 class Movie {
     id;
     title;
@@ -12,6 +15,7 @@ class Movie {
     }
 }
 
+// MovieStore은 Movie의 Repository라고 생각하면됨
 export class MovieStore {
     rootStore;
 
