@@ -1,5 +1,5 @@
 // stores/TodoStore.ts
-import { observable, action, computed, reaction } from "mobx";
+import { observable, action, computed, reaction, makeObservable, makeAutoObservable } from "mobx";
 import { createContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -11,10 +11,7 @@ export interface Todo {
 
 class TodoStore {
   constructor() {
-    reaction(
-      () => this.todos,
-      _ => console.log(this.todos.length)
-    );
+      makeAutoObservable(this)
   }
 
   @observable todos: Todo[] = [
@@ -26,12 +23,12 @@ class TodoStore {
     { id: uuidv4(), title: "Item #6", completed: false }
   ];
 
-  @action
+
   addTodo = (todo: Todo) => {
     this.todos.push({ ...todo, id: uuidv4() });
   };
 
-  @action
+
   toggleTodo = (id: string) => {
     this.todos = this.todos.map(todo => {
       if (todo.id === id) {
@@ -44,12 +41,11 @@ class TodoStore {
     });
   };
 
-  @action 
+
   removeTodo = (id: string) => {
     this.todos = this.todos.filter(todo => todo.id !== id);
   };
 
-  @computed 
   get info() {
     return {
       total: this.todos.length,
