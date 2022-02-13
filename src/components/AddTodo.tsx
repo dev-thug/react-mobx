@@ -15,10 +15,11 @@ const AddTodo = () => {
       <br />
       <input type="text" value={title} onChange={e => setTitle(e.target.value)} />
     <button onClick={_=>{
-        addTodo({
-            title: title,
-            completed: false
-        })
+        // addTodo({
+        //     title: title,
+        //     completed: false
+        // })
+        todoStore.todos.push({ title: title, completed: false, id: "test" });
         setTitle("")
     }}>ADD</button>
     </>
