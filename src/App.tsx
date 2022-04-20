@@ -66,10 +66,12 @@ const TodoListView: React.FC<{ todoList: TodoList }> = observer((props) => {
   );
 });
 
+
 const store = new TodoList([
   new Todo("Get Coffee"),
   new Todo("Write simpler code"),
 ]);
+
 
 const App = () => {
   return <TodoListView todoList={store} />;
