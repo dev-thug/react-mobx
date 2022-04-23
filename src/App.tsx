@@ -77,4 +77,4 @@ const App = () => {
   return <TodoListView todoList={store} />;
 };
 
-export default App;
+export default observer(App);
